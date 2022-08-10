@@ -1,0 +1,260 @@
+<!DOCTYPE Project SYSTEM "http://www.slickedit.com/dtd/vse/10.0/vpj.dtd">
+<Project
+    Version="10.0"
+    VendorName="SlickEdit"
+    TemplateName="Other C/C++"
+    WorkingDir=".">
+    <Config
+        Name="Debug"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdcompressor"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                OutputExts="*.o"
+                SaveOption="SaveCurrent"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -g %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -g -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Config
+        Name="Release"
+        Type="cpp"
+        DebugCallbackName="gdb"
+        OutputFile="%bdcompressor"
+        CompilerConfigName="Latest Version">
+        <Menu>
+            <Target
+                Name="Compile"
+                MenuCaption="&amp;Compile"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveCurrent"
+                OutputExts="*.o"
+                RunFromDir="%rw">
+                <Exec CmdLine='cc -c -O %i %defd -o "%bd%n.o" "%f"'/>
+            </Target>
+            <Target
+                Name="Link"
+                MenuCaption="&amp;Link">
+                <Exec CmdLine='cc -O -o "%o" %f %libs'/>
+            </Target>
+            <Target
+                Name="Build"
+                MenuCaption="&amp;Build"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" build "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Rebuild"
+                MenuCaption="&amp;Rebuild"
+                CaptureOutputWith="ProcessBuffer"
+                SaveOption="SaveWorkspaceFiles"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%(VSLICKBIN1)vsbuild" rebuild "%w" "%r"'/>
+            </Target>
+            <Target
+                Name="Debug"
+                MenuCaption="&amp;Debug"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='vsdebugio -prog "%o"'/>
+            </Target>
+            <Target
+                Name="Execute"
+                MenuCaption="E&amp;xecute"
+                SaveOption="SaveNone"
+                BuildFirst="1"
+                CaptureOutputWith="ProcessBuffer"
+                RunFromDir="%rw">
+                <Exec CmdLine='"%o"'/>
+            </Target>
+        </Menu>
+    </Config>
+    <Rules Name="Compile">
+        <Rule
+            InputExts="*.s"
+            OutputExts="*.o"
+            LinkObject="1">
+            <Exec CmdLine='as -o "%bd%n.o" "%f"'/>
+        </Rule>
+    </Rules>
+    <CustomFolders>
+        <Folder
+            Name="Source Files"
+            Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go"></Folder>
+        <Folder
+            Name="Header Files"
+            Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"></Folder>
+        <Folder
+            Name="Resource Files"
+            Filters="*.ico;*.cur;*.dlg"/>
+        <Folder
+            Name="Bitmaps"
+            Filters="*.bmp"/>
+        <Folder
+            Name="Other Files"
+            Filters=""></Folder>
+    </CustomFolders>
+    <Files AutoFolders="DirectoryView">
+        <Folder Name="../src">
+            <Folder Name="board">
+                <F N="../src/board/Siul2_Port_Ip_Cfg.c"/>
+                <F N="../src/board/Siul2_Port_Ip_Cfg.h"/>
+                <F N="../src/board/Tspc_Port_Ip_Cfg.c"/>
+                <F N="../src/board/Tspc_Port_Ip_Cfg.h"/>
+            </Folder>
+            <Folder Name="generate">
+                <Folder Name="include">
+                    <F N="../src/generate/include/Clock_Ip_Cfg.h"/>
+                    <F N="../src/generate/include/Clock_Ip_Cfg_Defines.h"/>
+                    <F N="../src/generate/include/IntCtrl_Ip_Cfg.h"/>
+                    <F N="../src/generate/include/IntCtrl_Ip_CfgDefines.h"/>
+                    <F N="../src/generate/include/Lpuart_Lin_Ip_Cfg.h"/>
+                    <F N="../src/generate/include/Lpuart_Lin_Ip_Defines.h"/>
+                    <F N="../src/generate/include/Lpuart_Lin_Ip_Sa_BOARD_InitPeripherals_PBcfg.h"/>
+                    <F N="../src/generate/include/modules.h"/>
+                    <F N="../src/generate/include/OsIf_ArchCfg.h"/>
+                    <F N="../src/generate/include/OsIf_Cfg.h"/>
+                    <F N="../src/generate/include/Siul2_Port_Ip_Defines.h"/>
+                </Folder>
+                <Folder Name="src">
+                    <F N="../src/generate/src/Clock_Ip_Cfg.c"/>
+                    <F N="../src/generate/src/IntCtrl_Ip_Cfg.c"/>
+                    <F N="../src/generate/src/Lpuart_Lin_Ip_Sa_BOARD_InitPeripherals_PBcfg.c"/>
+                    <F N="../src/generate/src/OsIf_Cfg.c"/>
+                </Folder>
+            </Folder>
+            <Folder Name="Project_Settings">
+                <Folder Name="Linker_Files">
+                    <F N="../src/Project_Settings/Linker_Files/linker_flash_s32k344.ld"/>
+                    <F N="../src/Project_Settings/Linker_Files/linker_ram_s32k344.ld"/>
+                </Folder>
+                <Folder Name="Startup_Code">
+                    <F N="../src/Project_Settings/Startup_Code/exceptions.c"/>
+                    <F N="../src/Project_Settings/Startup_Code/nvic.c"/>
+                    <F N="../src/Project_Settings/Startup_Code/startup.c"/>
+                    <F N="../src/Project_Settings/Startup_Code/startup_cm7.s"/>
+                    <F N="../src/Project_Settings/Startup_Code/system.c"/>
+                    <F N="../src/Project_Settings/Startup_Code/Vector_Table.s"/>
+                </Folder>
+            </Folder>
+            <Folder Name="RTD">
+                <Folder Name="include">
+                    <F N="../src/RTD/include/Clock_Ip.h"/>
+                    <F N="../src/RTD/include/Clock_Ip_Private.h"/>
+                    <F N="../src/RTD/include/Clock_Ip_Specific.h"/>
+                    <F N="../src/RTD/include/Clock_Ip_TrustedFunctions.h"/>
+                    <F N="../src/RTD/include/Clock_Ip_Types.h"/>
+                    <F N="../src/RTD/include/Det.h"/>
+                    <F N="../src/RTD/include/Det_stub.h"/>
+                    <F N="../src/RTD/include/IntCtrl_Ip.h"/>
+                    <F N="../src/RTD/include/IntCtrl_Ip_TypesDef.h"/>
+                    <F N="../src/RTD/include/Lin_Ip_Common.h"/>
+                    <F N="../src/RTD/include/Lpuart_Lin_Ip.h"/>
+                    <F N="../src/RTD/include/Lpuart_Lin_Ip_Hw_Access.h"/>
+                    <F N="../src/RTD/include/Lpuart_Lin_Ip_Types.h"/>
+                    <F N="../src/RTD/include/OsIf.h"/>
+                    <F N="../src/RTD/include/OsIf_Cfg_TypesDef.h"/>
+                    <F N="../src/RTD/include/OsIf_DeviceRegisters.h"/>
+                    <F N="../src/RTD/include/OsIf_Internal.h"/>
+                    <F N="../src/RTD/include/OsIf_Interrupts.h"/>
+                    <F N="../src/RTD/include/OsIf_Timer_Custom.h"/>
+                    <F N="../src/RTD/include/OsIf_Timer_System.h"/>
+                    <F N="../src/RTD/include/OsIf_Timer_System_Internal_Systick.h"/>
+                    <F N="../src/RTD/include/SchM_Lin.h"/>
+                    <F N="../src/RTD/include/SchM_Mcu.h"/>
+                    <F N="../src/RTD/include/SchM_Port.h"/>
+                    <F N="../src/RTD/include/Siul2_Port_Ip.h"/>
+                    <F N="../src/RTD/include/Siul2_Port_Ip_Types.h"/>
+                    <F N="../src/RTD/include/Tspc_Port_Ip.h"/>
+                    <F N="../src/RTD/include/Tspc_Port_Ip_Types.h"/>
+                </Folder>
+                <Folder Name="src">
+                    <F N="../src/RTD/src/Clock_Ip.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Data.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Divider.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_DividerTrigger.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_ExtOsc.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_FracDiv.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Frequency.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Gate.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_IntOsc.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Irq.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Monitor.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Pll.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_ProgFreqSwitch.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Selector.c"/>
+                    <F N="../src/RTD/src/Clock_Ip_Specific.c"/>
+                    <F N="../src/RTD/src/Det.c"/>
+                    <F N="../src/RTD/src/Det_stub.c"/>
+                    <F N="../src/RTD/src/IntCtrl_Ip.c"/>
+                    <F N="../src/RTD/src/Lin_Ip_Common.c"/>
+                    <F N="../src/RTD/src/Lpuart_Lin_Ip.c"/>
+                    <F N="../src/RTD/src/Lpuart_Lin_Ip_Hw_Access.c"/>
+                    <F N="../src/RTD/src/Lpuart_Lin_Ip_Irq.c"/>
+                    <F N="../src/RTD/src/OsIf_Interrupts.c"/>
+                    <F N="../src/RTD/src/OsIf_Timer.c"/>
+                    <F N="../src/RTD/src/OsIf_Timer_System.c"/>
+                    <F N="../src/RTD/src/OsIf_Timer_System_Internal_Systick.c"/>
+                    <F N="../src/RTD/src/SchM_Lin.c"/>
+                    <F N="../src/RTD/src/SchM_Mcu.c"/>
+                    <F N="../src/RTD/src/SchM_Port.c"/>
+                    <F N="../src/RTD/src/Siul2_Port_Ip.c"/>
+                    <F N="../src/RTD/src/Tspc_Port_Ip.c"/>
+                </Folder>
+            </Folder>
+            <Folder Name="src">
+                <F N="../src/src/main.c"/>
+            </Folder>
+            <F N="../src/compressor.mex"/>
+        </Folder>
+    </Files>
+</Project>
